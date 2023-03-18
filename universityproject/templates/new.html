@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NEW FORM</title>
+    <script>
+
+    function removeOptions(selectElement) {
+   var i, L = selectElement.options.length - 1;
+   for(i = L; i >= 0; i--) {
+      selectElement.remove(i);
+   }
+}
+
+
+        function dept() {
+             daySelect = document.getElementById('courses');
+             var array;
+             if (document.getElementById('Department').value == "Science")
+             {
+             array = ["Physics","Chemistry","Biology"];
+             }
+             if (document.getElementById('Department').value == "Art and Design")
+             {
+             array = ["Art","Design"];
+             }
+             if (document.getElementById('Department').value == "Business Study")
+             {
+             array = ["BBA","BCom"];
+             }
+             if (document.getElementById('Department').value == "English Speaking")
+             {
+             array = ["Literature","Philosophy"];
+             }
+            //Create and append the options
+            // using the function:
+            removeOptions(document.getElementById('courses'));
+            for (var i = 0; i < array.length; i++) {
+                var option = document.createElement("option");
+                option.value = array[i];
+                option.text = array[i];
+                daySelect.appendChild(option);
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+<h2>NEW FORM</h2>
+<form method = "post" target="_self" action="submit">
+{% csrf_token %}
+
+       <input type="text" name="Name" placeholder="Enter your Name"><br>
+ <input type="date" name="DOB" placeholder="DD/MM/YYYY"><br>
+ <input type="number" name="Age" placeholder="Enter your Age"><br>
+<label for="Gender">Choose your Gender</label>
+ <input type="radio" name="Gender" id="male" value="male"/><label>male</label>
+ <input type="radio" name="Gender" id="female" value="female"/><label>female</label>
+<br>
+ <input type="number" name="Ph no" placeholder="Enter your Ph No"><br>
+ <input type="email" name="Email" placeholder="Enter your Email"><br>
+ <input type="text" name="Address" placeholder="Enter your Address"><br>
+
+        <label for="Department">Choose a Department:</label>
+
+<select name="Department" id="Department" onchange="dept()">
+  <option value="Art and Design">Art and Design</option>
+  <option value="Science">Science</option>
+  <option value="English Speaking">English Speaking</option>
+  <option value="Business Study">Business Study</option>
+</select>
+<br>
+<label for="courses">Choose a Course:</label>
+
+<select name="Courses" id="courses">
+</select>
+<br>
+<label for="Purpose">choose a Purpose:</label>
+<select name="Purpose" id="Purpose" onchange="dept()">
+    <option value="Enquiry">Enquiry</option>
+  <option value="Place order">Place order</option>
+  <option value="Return">Return</option>
+</select>
+    <br>
+    <label for="Materials Required">Materials Required:</label><br>
+    <input type="checkbox" id="NoteBook" name="NoteBook" value="Bike">
+<label for="NoteBook">NoteBook </label><br>
+<input type="checkbox" id="Pen" name="Pen" value="Car">
+<label for="Pen">Pen</label><br>
+<input type="checkbox" id="Exam Paper" name="Exam Paper" value="Boat">
+<label for="Exam Paper"> Exam Paper</label><br>
+
+</select>
+    
+
+    <input type="submit" value="submit">
+</form>
+
+
+<input type="button" value="Logout"><br>
+</body>
+</html>
